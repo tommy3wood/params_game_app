@@ -41,4 +41,48 @@ class Api::ParamsGamesAppsController < ApplicationController
 
     render 'guess_a_number.json.jb'
   end
+
+  def guess_segment
+    @guess = params[:wildcard].to_i
+    hidden_number = 72
+
+    if @guess == hidden_number
+      @message = "YOU NAILED IT!"
+    elsif @guess < hidden_number
+      @message = "Guess higher"
+    else
+      @message = "Guess Lower"
+    end
+    
+    render 'guess_segment.json.jb'
+  end
+
+  def guess_number
+    @guess = params[:number].to_i
+    hidden_number = 72
+
+    if @guess == hidden_number
+      @message = "YOU NAILED IT!"
+    elsif @guess < hidden_number
+      @message = "Guess higher"
+    else
+      @message = "Guess Lower"
+    end
+    
+    render 'guess_number.json.jb'
+  end
+
+  def login
+    @username = params[:username]
+    @password = params[:password]
+
+    if @username == "hugh" && @password == "swordfish"
+      @message = "Valid credentials"
+    else
+      @message = "Invalid credentials"
+    end
+
+    render 'login.json.jb'
+  end
+
 end
